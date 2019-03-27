@@ -7,6 +7,11 @@ namespace delegate_eksempler
         static void Main(string[] args)
         {
 
+            Console.WriteLine("Array test");
+            Console.WriteLine("-------------");
+            ArrayTest.Test();
+            Console.WriteLine();
+
             Console.WriteLine("Callback test");
             Console.WriteLine("-------------");
             ClassBackTest.Test();

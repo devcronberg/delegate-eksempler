@@ -8,6 +8,22 @@ namespace delegate_eksempler
 
         private Dictionary<string, BeregnDelegate> beregninger = new Dictionary<string, BeregnDelegate>();
 
+        public RegnemaskineDemo()
+        {
+            TilføjBeregning("Plus", P);
+            TilføjBeregning("Minus", M);
+
+            double P(double a, double b)
+            {
+                return a + b;
+            }
+            double M(double a, double b)
+            {
+                return a - b;
+            }
+
+        }
+
         public void TilføjBeregning(string navn, BeregnDelegate beregning)
         {
             beregninger.Add(navn, beregning);
@@ -45,35 +61,33 @@ namespace delegate_eksempler
         public static void Test()
         {
 
-            RegnemaskineDemo r = new RegnemaskineDemo();
-            BeregnDelegate p = new BeregnDelegate(Plus);
+            RegnemaskineDemo r = new RegnemaskineDemo();            
             r.VisBeregninger();
-            r.TilføjBeregning("Plus", p);
-            r.TilføjBeregning("Minus", Minus);
-            r.VisBeregninger();
-            Console.WriteLine("Tilføjer gange");
+            Console.WriteLine("Tilføjer gange og divider");
             r.TilføjBeregning("Gange", Gange);
+            r.TilføjBeregning("Divider", Divider);
             r.VisBeregninger();
-            Console.WriteLine("Beregner med Minus");
-            double res = r.Beregn("Minus", 10, 5);
-            Console.WriteLine($"10 - 5 = {res}");
+            Console.WriteLine("Beregner med Gange");
+            double res = r.Beregn("Gange", 10, 5);
+            Console.WriteLine($"10 * 5 = {res}");
+
+            Console.WriteLine("Beregner med Divider");
+            res = r.Beregn("Divider", 10, 5);
+            Console.WriteLine($"10 / 5 = {res}");
 
         }
 
-        public static double Plus(double a, double b)
-        {
-            return a + b;
-        }
-
-        public static double Minus(double a, double b)
-        {
-            return a - b;
-        }
 
         public static double Gange(double a, double b)
         {
             return a * b;
         }
+
+        public static double Divider(double a, double b)
+        {
+            return a / b;
+        }
+
 
     }
 
